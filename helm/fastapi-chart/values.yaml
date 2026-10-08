@@ -1,0 +1,35 @@
+replicaCount: 2
+
+image:
+  repository: fastapi-stage2
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+app:
+  name: fastapi
+  environment: production
+
+redis:
+  host: redis
+  port: 6379
+  existingSecret: redis-secret
+  existingSecretKey: REDIS_PASSWORD
+
+secret:
+  appSecret: "CHANGE-ME"
+
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+
+ingress:
+  enabled: true
+  className: nginx
+  host: ""
+  path: /api(/|$)(.*)
+  pathType: ImplementationSpecific
