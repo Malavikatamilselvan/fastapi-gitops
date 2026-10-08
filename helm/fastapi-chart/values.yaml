@@ -36,6 +36,6 @@ persistence:
 ingress:
   enabled: true
   className: nginx
-  host: ""
+  host: fastapi-stage9.local
   path: /api(/|$)(.*)
   pathType: ImplementationSpecific
